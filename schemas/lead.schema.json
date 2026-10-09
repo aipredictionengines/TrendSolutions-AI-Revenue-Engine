@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LeadIntake",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source",
+    "external_id",
+    "contact",
+    "requirements"
+  ],
+  "properties": {
+    "source": {
+      "type": "string",
+      "enum": [
+        "form",
+        "inbound_call",
+        "crm_import",
+        "manual"
+      ]
+    },
+    "external_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "contact": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 254
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 32
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "email"
+          ]
+        },
+        {
+          "required": [
+            "phone"
+          ]
+        }
+      ]
+    },
+    "requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "location": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "budget_min": {
+          "type": "number",
+          "minimum": 0
+        },
+        "budget_max": {
+          "type": "number",
+          "minimum": 0
+        },
+        "property_type": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "timeline": {
+          "type": "string",
+          "maxLength": 120
+        }
+      }
+    },
+    "consent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "outreach_allowed": {
+          "type": "boolean"
+        },
+        "basis": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "recorded_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      }
+    }
+  }
+}
