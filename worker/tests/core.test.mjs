@@ -1,0 +1,10 @@
+import test from 'node:test'; import assert from 'node:assert/strict'; import {validateProspect,validateEvent,decide} from '../src/core.mjs';
+const base=()=>({id:'dubai_001',company:'TEST',market:'Dubai',niche:'real estate',evidence_state:'VERIFIED',source_url:'https://example.org',checked_at:'2026-10-09T00:00:00Z',signal:'documented expansion',score:80,contact_basis:'reviewed'});
+test('synthetic is never contact eligible',()=>assert.equal(decide({...base(),evidence_state:'SYNTHETIC'},true).action,'VERIFY_FIRST'));
+test('verified evidence required',()=>assert.throws(()=>validateProspect({...base(),source_url:null}),/evidence_required/));
+test('approval is mandatory',()=>assert.equal(decide(base()).action,'HUMAN_APPROVAL'));
+test('even approved outreach remains manual',()=>assert.equal(decide(base(),true).action,'MANUAL_CONTACT_ONLY'));
+test('basis blocks contact',()=>assert.equal(decide({...base(),contact_basis:null},true).action,'COMPLIANCE_REVIEW'));
+test('score gating',()=>assert.equal(decide({...base(),score:20},true).action,'WATCH'));
+test('reject false revenue type',()=>assert.throws(()=>validateEvent({id:'event_001',prospect_id:'dubai_001',event_type:'booked',occurred_at:'2026-10-09T00:00:00Z',amount_usd:100}),/invalid_amount/));
+test('accept valid won event',()=>assert.equal(validateEvent({id:'event_001',prospect_id:'dubai_001',event_type:'won',occurred_at:'2026-10-09T00:00:00Z',amount_usd:100}).amount_usd,100));
