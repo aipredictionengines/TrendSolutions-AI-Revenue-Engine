@@ -1,0 +1,28 @@
+[
+  {
+    "prospect_id": "DEMO_001",
+    "company": "Synthetic Example Realty",
+    "market": "Dubai",
+    "niche": "Real estate agency",
+    "evidence_state": "SYNTHETIC",
+    "source_url": null,
+    "checked_at": null,
+    "signal": "FICTIONAL: inbound lead response gap",
+    "score": 85,
+    "contact_channel": null,
+    "consent_or_basis": null
+  },
+  {
+    "prospect_id": "DEMO_002",
+    "company": "Synthetic Coastal Homes",
+    "market": "Bali",
+    "niche": "Real estate agency",
+    "evidence_state": "SYNTHETIC",
+    "source_url": null,
+    "checked_at": null,
+    "signal": null,
+    "score": 45,
+    "contact_channel": null,
+    "consent_or_basis": null
+  }
+]
