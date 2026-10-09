@@ -1,0 +1,10 @@
+name = "trendsolutions-revenue-engine"
+main = "src/index.mjs"
+compatibility_date = "2026-10-01"
+
+# Populate database_id after creating D1. Do NOT deploy with placeholder.
+[[d1_databases]]
+binding = "DB"
+database_name = "revenue_engine"
+database_id = "REPLACE_WITH_REAL_D1_DATABASE_ID"
+migrations_dir = "migrations"
