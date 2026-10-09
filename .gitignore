@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.env
+.env.*
+!.env.example
+*.sqlite*
+*.db
+*.jsonl
+data/private/
+data/imports/
+!data/verified/README.md
