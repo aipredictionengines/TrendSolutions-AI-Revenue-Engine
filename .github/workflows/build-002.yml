@@ -1,0 +1,20 @@
+name: BUILD-002 Worker CI
+on:
+  push:
+    branches: ['build/002-*']
+  pull_request:
+    branches: [main]
+jobs:
+  worker:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: worker
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --ignore-scripts
+      - run: npm run check
+      - run: npm test

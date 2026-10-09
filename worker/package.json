@@ -1,0 +1,15 @@
+{
+  "name": "trendsolutions-revenue-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check src/index.mjs && node --check src/core.mjs",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "migrate": "wrangler d1 migrations apply revenue_engine --remote"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
